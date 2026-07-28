@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大陸魔導協会 | Continental Arcane Authority — 公式サイト</title>
+<meta name="description" content="大陸魔導協会(大魔協/CAA)公式サイト。組織概要、魔術書について、お知らせを掲載しています。">
+<!-- 協定第7条に基づき、本ページの内容は予告なく変更される場合があります -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Serif+JP:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #eae2ce;
+    --paper-alt: #ddd1ac;
+    --paper-deep: #c8bb92;
+    --ink: #211d16;
+    --ink-soft: #56503f;
+    --ink-faint: #837a5f;
+    --seal: #7c2c22;
+    --seal-deep: #55201a;
+    --crown: #232c42;
+    --crown-deep: #141a29;
+    --gold: #a5843c;
+    --gold-bright: #c9a35e;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0; background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(165,132,60,.10), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', 'Noto Serif JP', sans-serif;
+    line-height:1.85; font-size:15.5px;
+  }
+  a{color:var(--crown); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px;}
+  h1,h2,h3{font-family:'Noto Serif JP', serif;}
+
+  /* 判じ物として埋め込まれた一字強調(内容・位置は変更しない) */
+  .mark{
+    color:var(--seal); font-weight:700;
+    text-decoration:underline wavy var(--seal); text-decoration-thickness:1px;
+    text-underline-offset:2px;
+  }
+
+  /* ---------- utility strip ---------- */
+  .lang-bar{
+    background:var(--crown-deep); color:#b7bccb; font-size:11px; letter-spacing:.05em;
+    padding:6px 26px; display:flex; justify-content:space-between; gap:16px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .lang-links{display:flex; gap:16px;}
+  .lang-bar a{color:#b7bccb; opacity:.75;}
+  .lang-bar a.current{opacity:1; color:var(--gold-bright); text-decoration:underline;}
+  .site-search{display:flex; align-items:center; gap:6px;}
+  .site-search input{
+    background:transparent; border:1px solid rgba(255,255,255,.22); color:#b7bccb;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; padding:3px 8px; width:170px;
+  }
+  .site-search input::placeholder{color:#6c7284;}
+  .site-search input:focus{outline:1px solid var(--gold-bright); background:rgba(255,255,255,.05);}
+  .site-search button{
+    background:transparent; border:1px solid rgba(255,255,255,.22); color:#b7bccb;
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; padding:3px 10px; cursor:pointer;
+  }
+  .site-search button:hover{border-color:var(--gold-bright); color:#fff;}
+
+  /* ---------- header ---------- */
+  header.site-header{background:var(--crown); color:#e9e5d8; padding:26px 26px 0;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,.06);}
+  .header-inner{
+    max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:16px; padding-bottom:22px;
+  }
+  .brand{display:flex; align-items:center; gap:14px;}
+  .brand svg{flex-shrink:0;}
+  .brand-text .en{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.18em;
+    color:#9aa2bd; text-transform:uppercase;
+  }
+  .brand-text .jp{
+    font-family:'Noto Serif JP', serif; font-size:21px; font-weight:600;
+    letter-spacing:.03em; color:#f2eee0;
+  }
+
+  /* folder-tab navigation */
+  nav.main-nav{
+    max-width:1100px; margin:0 auto; display:flex; gap:6px; padding-left:2px;
+  }
+  nav.main-nav a{
+    position:relative; color:#c3c8d8; font-size:13.5px; padding:12px 18px 11px;
+    letter-spacing:.02em; background:rgba(239,233,220,.05);
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    transition: background .15s ease, color .15s ease;
+    display:flex; align-items:baseline; gap:7px;
+  }
+  nav.main-nav a .rn{font-family:'IBM Plex Mono', monospace; font-size:9.5px; color:var(--gold-bright); opacity:.85;}
+  nav.main-nav a:hover, nav.main-nav a:focus-visible{
+    color:#fff; text-decoration:none; background:var(--paper);
+  }
+  nav.main-nav a:hover .rn, nav.main-nav a:focus-visible .rn{color:var(--seal);}
+
+  /* ---------- notice ---------- */
+  .notice{ background:var(--seal-deep); border-top:1px solid var(--gold); }
+  .notice-inner{
+    max-width:1100px; margin:0 auto; padding:11px 26px;
+    display:flex; align-items:baseline; gap:12px; font-size:13.5px;
+  }
+  .notice-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.06em;
+    color:#f0d9c9; border:1px solid #d9b39d; padding:2px 7px; flex-shrink:0;
+  }
+  .notice-inner p{margin:0; color:#f0e2d6;}
+  .notice-highlight{
+    font-weight:700; color:#f6e6b8; text-decoration:underline; text-underline-offset:2px;
+    cursor:default;
+  }
+
+  main{max-width:1100px; margin:0 auto; padding:0 26px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:64px 0 52px; border-bottom:1px solid var(--paper-deep);
+    display:grid; grid-template-columns:1.15fr .95fr; gap:52px; align-items:center;
+  }
+  .hero .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.14em;
+    color:var(--seal); text-transform:uppercase; margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:33px; line-height:1.55; font-weight:600; margin:0 0 22px; letter-spacing:.02em;
+  }
+  .hero p{max-width:48ch; color:var(--ink-soft); margin:0;}
+  .hero-facts{
+    margin-top:24px; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-faint);
+    border-top:1px solid var(--paper-deep); padding-top:14px; display:grid; gap:6px;
+  }
+  .hero-facts div span{display:inline-block; min-width:9.5em; color:var(--gold);}
+
+  .seal-wrap{display:flex; flex-direction:column; align-items:center; gap:14px;}
+  .seal-wrap svg{width:100%; max-width:300px; height:auto; filter:drop-shadow(0 6px 14px rgba(20,26,41,.25));}
+  .seal-caption{
+    min-height:2.8em; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    color:var(--crown); letter-spacing:.03em; padding:0 10px;
+  }
+  .seal-caption .code{color:var(--seal); font-weight:500;}
+  .seal-caption .hint{display:block; color:var(--ink-faint); font-size:10.5px; margin-top:3px; font-family:'Zen Kaku Gothic New',sans-serif;}
+  .wedge{cursor:pointer; transition:opacity .15s ease, filter .15s ease;}
+  .wedge:hover, .wedge:focus-visible{opacity:.82; filter:brightness(1.18);}
+  .wedge-label{font-family:'IBM Plex Mono', monospace; font-size:8.5px; fill:#e9e5d8; letter-spacing:.04em; pointer-events:none;}
+  .center-link{cursor:pointer;}
+  .center-link:hover circle{filter:brightness(1.1);}
+
+  /* ---------- sections ---------- */
+  section{padding:48px 0; border-bottom:1px solid var(--paper-deep);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px; gap:12px;}
+  .section-head h2{
+    font-size:19px; font-weight:600; margin:0;
+    display:flex; align-items:baseline; gap:11px;
+  }
+  .section-head h2 .en{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--gold);
+    letter-spacing:.1em; font-weight:400;
+  }
+  .section-head a.all{font-size:12.5px; color:var(--ink-faint); white-space:nowrap;}
+
+  /* ---------- news : ledger with wax stamps ---------- */
+  .news-list{list-style:none; margin:0; padding:0;}
+  .news-list li{
+    display:grid; grid-template-columns:100px 46px 1fr; gap:16px;
+    padding:15px 0; border-top:1px dashed var(--paper-deep); align-items:center; font-size:13.5px;
+  }
+  .news-list li:first-child{border-top:none;}
+  .news-list time{font-family:'IBM Plex Mono', monospace; color:var(--ink-faint); font-size:12px;}
+  .stamp{
+    width:38px; height:38px; border-radius:50%; border:1.5px solid var(--crown); color:var(--crown);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Noto Serif JP', serif; font-size:11px; letter-spacing:.02em;
+    transform:rotate(-4deg); flex-shrink:0; background:rgba(35,44,66,.04);
+  }
+  .stamp.alt{border-color:var(--seal); color:var(--seal); transform:rotate(3deg); background:rgba(124,44,34,.05);}
+  .news-list a{color:var(--ink);}
+  .news-list li.redacted a{color:var(--ink-faint);}
+  .news-list li.redacted .bar{
+    display:inline-block; background:var(--ink); color:transparent; user-select:none; padding:0 4px;
+  }
+
+  /* ---------- cards ---------- */
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .card{
+    background:var(--paper-alt); border:1px solid var(--paper-deep); padding:24px;
+    position:relative; overflow:hidden;
+  }
+  .card::before{
+    content:""; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--gold);
+    opacity:.55;
+  }
+  .card .num{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--seal); letter-spacing:.08em;}
+  .card h3{font-size:16.5px; margin:9px 0 10px; font-weight:600;}
+  .card h3 a{color:var(--ink);}
+  .card p{margin:0; font-size:13.5px; color:var(--ink-soft);}
+
+  /* ---------- about ---------- */
+  .about-text{max-width:70ch; font-size:14.5px; color:var(--ink-soft);}
+  .about-text p{margin:0 0 15px;}
+  blockquote.founding{
+    font-family:'Noto Serif JP', serif; font-style:normal; font-size:15.5px; color:var(--ink);
+    margin:24px 0; padding:20px 24px; position:relative;
+    background:linear-gradient(var(--paper-alt), var(--paper-alt)) padding-box;
+    border-left:3px solid var(--seal);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, black 8px, black calc(100% - 8px), transparent 100%),
+                         linear-gradient(0deg, transparent 0, black 6px, black calc(100% - 6px), transparent 100%);
+    -webkit-mask-composite: intersect; mask-composite: intersect;
+  }
+  blockquote.founding cite{
+    display:block; font-style:normal; font-size:12px; color:var(--ink-faint);
+    font-family:'IBM Plex Mono', monospace; margin-top:10px; letter-spacing:.02em;
+  }
+
+  /* ---------- footer ---------- */
+  footer{background:var(--crown-deep); color:#9aa0b3; margin-top:24px;}
+  .footer-inner{
+    max-width:1100px; margin:0 auto; padding:44px 26px 30px;
+    display:grid; grid-template-columns:auto 2fr 1fr 1fr; gap:34px; font-size:12.5px; align-items:start;
+  }
+  .footer-seal{width:64px; height:64px; flex-shrink:0;}
+  .footer-inner h4{color:#d5d8e2; font-size:12px; letter-spacing:.06em; margin:0 0 12px; font-weight:500;}
+  .footer-inner ul{list-style:none; margin:0; padding:0;}
+  .footer-inner li{margin-bottom:7px;}
+  .footer-inner a{color:#9aa0b3;}
+  .footer-inner a:hover{color:#fff;}
+  .footer-addr{line-height:1.9; font-family:'IBM Plex Mono', monospace; font-size:11.5px;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.08); padding:15px 26px; max-width:1100px; margin:0 auto;
+    font-size:11px; color:#6c7284; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr; gap:30px; padding:44px 0 40px;}
+    .seal-wrap svg{max-width:220px;}
+    .grid-3{grid-template-columns:1fr;}
+    .footer-inner{grid-template-columns:1fr; gap:22px;}
+    .news-list li{grid-template-columns:38px 1fr; grid-template-areas:"stamp title" "time title"; gap:4px 14px;}
+    .news-list time{grid-area:time;}
+    .stamp{grid-area:stamp;}
+    .news-list li a{grid-area:title;}
+    nav.main-nav{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <form class="site-search" action="search.html" method="get" role="search">
+    <input type="text" name="q" placeholder="サイト内を検索" aria-label="サイト内検索" autocomplete="off">
+    <button type="submit" aria-label="検索">検索</button>
+  </form>
+  <div class="lang-links">
+    <a href="#" class="current">日本語</a>
+    <a href="#">EN</a>
+    <a href="#">DE</a>
+    <a href="index-fr.html">FR</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <svg width="42" height="42" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18.5" stroke="#c9a35e" stroke-width="1"/>
+        <path d="M20 6 L20 34 M8 14 L32 26 M8 26 L32 14" stroke="#c9a35e" stroke-width="0.75"/>
+        <circle cx="20" cy="20" r="3" fill="#c9a35e"/>
+      </svg>
+      <div class="brand-text">
+        <div class="en">Continental Arcane Authority</div>
+        <div class="jp">大陸魔導協会</div>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <a href="#about"><span class="rn">I</span>協会概要</a>
+    <a href="#structure"><span class="rn">II</span>組織構造</a>
+    <a href="grimoire.html"><span class="rn">III</span>魔術書について</a>
+    <a href="#news"><span class="rn">IV</span>お知らせ</a>
+    <a href="recruit.html"><span class="rn">V</span>採用情報</a>
+    <a href="contact.html"><span class="rn">VI</span>お問い合わせ</a>
+  </nav>
+</header>
+
+<div class="notice">
+  <div class="notice-inner">
+    <span class="notice-tag">告示 24-119</span>
+    <p>Class-X 相当と推定される未分類文書の取扱いについて、各支部宛の通達を更新しました。詳細は<span class="notice-highlight">構成員専用ページ</span>をご確認ください。</p>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Established — Prague</div>
+      <h1>秩序ある知と均衡、<br>その維持。</h1>
+      <p>大陸魔導協会(大魔協/CAA)は、危険な魔術書《グリモワール》および制御不能な異産の管理・封印を目的とする非政府・独立機関です。各国政府との協定<span class="mark">に</span>より特殊な法的地位を保有し、七枢冠の統轄のもと七つの部門が業務にあたっています。</p>
+      <div class="hero-facts">
+        <div><span>本部所在地</span>プラハ, 詳細は別紙参照</div>
+        <div><span>設立</span>詳細は協会概要を参照</div>
+        <div><span>組織規模</span>本部+18支部</div>
+        <div><span>統轄機関</span><a href="septem-corona.html">七枢冠《セプテム・コロナ》</a></div>
+      </div>
+    </div>
+    <div class="seal-wrap">
+      <svg id="corona-seal" viewBox="0 0 300 300" role="img" aria-label="七枢冠の紋章 — 各区画にカーソルを合わせると部門名が表示されます。クリックすると各部門のページへ移動します"></svg>
+      <p class="seal-caption" id="seal-caption">
+        <span class="code">SEPTEM CORONA</span>
+        <span class="hint">紋章の区画にカーソルを合わせてください</span>
+      </p>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="section-head">
+      <h2>お知らせ <span class="en">Announcements</span></h2>
+      <a class="all" href="#">すべて見る →</a>
+    </div>
+    <ul class="news-list">
+      <li>
+        <time>2026.06.28</time>
+        <span class="stamp">制度</span>
+        <a href="#">魔術書接<span class="mark">触</span>時における分類基準の一部改定について(Class B以上が対象)</a>
+      </li>
+      <li>
+        <time>2026.06.14</time>
+        <span class="stamp">支部</span>
+        <a href="#">日本支部における新規構成員登録の受付を再開しました</a>
+      </li>
+      <li class="redacted">
+        <time>2026.05.30</time>
+        <span class="stamp alt">通達</span>
+        <a href="#">第<span class="bar">██</span>支部における業務変更の確認事案について</a>
+      </li>
+      <li>
+        <time>2026.05.02</time>
+        <span class="stamp">行事</span>
+        <a href="#">年次総会(プラハ本部)の開催日程を公開しました</a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <h2>協会概要 <span class="en">About CAA</span></h2>
+    </div>
+    <div class="about-text">
+      <p>大陸魔導協会の設立は、異能が現在のように一般社会に認知・定着する以前の時代に遡ります。危険な術式文書(後の「魔術書《グリモワール》」)及び制御不能な遺物(後の「異産」)の管理体制が、個人や小集団レベルでは限界を迎えたことが直接の契機とされています。</p>
+      <blockquote class="founding">
+        「我々は叡智の探究者であると同時に、知恵の檻の番人でもある。開かれるべきでない扉は、永遠に閉じておかなければならない。」
+        <cite>— 大魔協設立時の理念文書より抜粋</cite>
+      </blockquote>
+      <p>上級魔導士資格は審査制であり、所属支部の推薦および実技試験を経て認定されます。認定構成員は分類文書へのアクセス権限を段階的に取得することができます。設立当初の詳細な記録は中央本部深層保管庫(節制部門管轄)に封印されてお<span class="mark">り</span>、一般職員には開示されていません。</p>
+    </div>
+  </section>
+
+  <section id="structure">
+    <div class="section-head">
+      <h2>組織構造 <span class="en">Structure</span></h2>
+    </div>
+    <div class="about-text" style="margin-bottom:26px;">
+      <p>組織は七つの部門に分かれており、構成員は基本的にその何れかに所属します。最高意思決定機関として「<a href="septem-corona.html">七枢冠《セプテム・コロナ》</a>」が設置され、七名の最高幹部がそれぞれ各部門を統括します。各部門は固有の管轄業務と特権を持って相互に独立した権限を有しており、七枢冠のうち二名以上はプラハ本部に常駐する規定です。各部門には<span class="mark">ぬ</span>かりない職務遂行が求められます。</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">I · JUSTITIA</div>
+        <h3><a href="dept-justitia.html">正義部門</a></h3>
+        <p>戦闘・強行回収を担当。</p>
+      </div>
+      <div class="card">
+        <div class="num">II · WISDOM</div>
+        <h3><a href="dept-wisdom.html">英知部門</a></h3>
+        <p>研究・解析・鑑定・魔術書の製作を担当。</p>
+      </div>
+      <div class="card">
+        <div class="num">III · TEMPERANTIA</div>
+        <h3><a href="dept-temperantia.html">節制部門</a></h3>
+        <p>保管・封印・管理を担当。</p>
+      </div>
+      <div class="card">
+        <div class="num">IV · FORTIS</div>
+        <h3><a href="dept-fortis.html">剛毅部門</a></h3>
+        <p><span class="mark">神</span>域を含む未確認領域の調査・記録を担当。</p>
+      </div>
+      <div class="card">
+        <div class="num">V · FAITH</div>
+        <h3><a href="dept-faith.html">信仰部門</a></h3>
+        <p>結界・伝承継承を担当。</p>
+      </div>
+      <div class="card">
+        <div class="num">VI · SPERA</div>
+        <h3><a href="dept-spera.html">希望部門</a></h3>
+        <p>外交・仲介のほか、<span class="mark">祟</span>り等の異常事象の監察を担当。</p>
+      </div>
+      <div class="card">
+        <div class="num">VII · VERITAS</div>
+        <h3><a href="dept-veritas.html">愛部門</a></h3>
+        <p>医療・保護・追悼を担当。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="classification">
+    <div class="section-head">
+      <h2>魔術書について <span class="en">Classification</span></h2>
+      <a class="all" href="grimoire.html">詳しく見る →</a>
+    </div>
+    <div class="card" style="max-width:380px;">
+      <div class="num">CLASS A–B</div>
+      <h3>一般公開区分</h3>
+      <p>構成員であれば申請により閲覧可能。取扱いに際して特別な許可は不要です。それ以外の区分については、あ<span class="mark">ら</span>かじめ構成員専用ページにて分類レベルに応じた許可証の申請を受け付けています。</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="section-head">
+      <h2>主要業務 <span class="en">Services</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>魔術書の管理・保管</h3>
+        <p>世界各地から回収したグリモワールの鑑定・クラス分類・封印・管理を行います。</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>禁書の管理</h3>
+        <p>個人の所持・使用・研究に制限が掛けられた魔術書の管理。公的所持には許可証が必要です。</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>異産の管理・保管</h3>
+        <p>制御不能で危険性が高いとみられる異能的遺物の回収および無力化を行います。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <svg class="footer-seal" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="18.5" stroke="#c9a35e" stroke-width="1"/>
+      <path d="M20 6 L20 34 M8 14 L32 26 M8 26 L32 14" stroke="#c9a35e" stroke-width="0.75"/>
+      <circle cx="20" cy="20" r="3" fill="#c9a35e"/>
+    </svg>
+    <div>
+      <h4>大陸魔導協会</h4>
+      <div class="footer-addr">
+        Continental Arcane Authority<br>
+        Prague — HQ(詳細所在地は別紙参照)
+      </div>
+    </div>
+    <div>
+      <h4>サイトマップ</h4>
+      <ul>
+        <li><a href="#about">協会概要</a></li>
+        <li><a href="#structure">組織構造</a></li>
+        <li><a href="grimoire.html">魔術書について</a></li>
+        <li><a href="#news">お知らせ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>その他</h4>
+      <ul>
+        <li><a href="#">プライバシーポリシー</a></li>
+        <li><a href="recruit.html">採用情報</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© Continental Arcane Authority. All rights reserved.</span>
+    <span>Site last verified: 2026.06.28</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const departments = [
+    { rn:"I",   code:"JUSTITIA",    name:"正義部門", href:"dept-justitia.html" },
+    { rn:"II",  code:"WISDOM",      name:"英知部門", href:"dept-wisdom.html" },
+    { rn:"III", code:"TEMPERANTIA", name:"節制部門", href:"dept-temperantia.html" },
+    { rn:"IV",  code:"FORTIS",      name:"剛毅部門", href:"dept-fortis.html" },
+    { rn:"V",   code:"FAITH",       name:"信仰部門", href:"dept-faith.html" },
+    { rn:"VI",  code:"SPERA",       name:"希望部門", href:"dept-spera.html" },
+    { rn:"VII", code:"VERITAS",     name:"愛部門", href:"dept-veritas.html" }
+  ];
+
+  const svg = document.getElementById('corona-seal');
+  const caption = document.getElementById('seal-caption');
+  const cx = 150, cy = 150, rOuter = 128, rInner = 34;
+  const n = departments.length;
+  const ns = "http://www.w3.org/2000/svg";
+
+  function polar(r, angleDeg){
+    const a = (angleDeg - 90) * Math.PI / 180;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+  }
+
+  const ring = document.createElementNS(ns, "circle");
+  ring.setAttribute("cx", cx); ring.setAttribute("cy", cy); ring.setAttribute("r", rOuter + 6);
+  ring.setAttribute("fill", "none"); ring.setAttribute("stroke", "#a5843c");
+  ring.setAttribute("stroke-width", "1"); ring.setAttribute("opacity", "0.6");
+  svg.appendChild(ring);
+
+  departments.forEach((d, i) => {
+    const start = (360 / n) * i;
+    const end = (360 / n) * (i + 1);
+    const [x1, y1] = polar(rOuter, start);
+    const [x2, y2] = polar(rOuter, end);
+    const [ix2, iy2] = polar(rInner, end);
+    const [ix1, iy1] = polar(rInner, start);
+
+    const link = document.createElementNS(ns, "a");
+    link.setAttributeNS("http://www.w3.org/1999/xlink", "href", d.href);
+    link.setAttribute("href", d.href);
+
+    const path = document.createElementNS(ns, "path");
+    const dStr = `M ${ix1} ${iy1} L ${x1} ${y1} A ${rOuter} ${rOuter} 0 0 1 ${x2} ${y2} L ${ix2} ${iy2} A ${rInner} ${rInner} 0 0 0 ${ix1} ${iy1} Z`;
+    path.setAttribute("d", dStr);
+    path.setAttribute("fill", i % 2 === 0 ? "#232c42" : "#33405e");
+    path.setAttribute("stroke", "#eae2ce");
+    path.setAttribute("stroke-width", "1.5");
+    path.classList.add("wedge");
+    path.setAttribute("tabindex", "0");
+    path.setAttribute("role", "link");
+    path.setAttribute("aria-label", d.name + "のページへ");
+
+    const setCaption = () => {
+      caption.innerHTML = `<span class="code">${d.rn} · ${d.code}</span><span class="hint">${d.name}</span>`;
+    };
+    path.addEventListener("mouseenter", setCaption);
+    path.addEventListener("focus", setCaption);
+    path.addEventListener("mouseleave", () => {
+      caption.innerHTML = `<span class="code">SEPTEM CORONA</span><span class="hint">紋章の区画にカーソルを合わせてください</span>`;
+    });
+
+    link.appendChild(path);
+    svg.appendChild(link);
+
+    const [lx, ly] = polar((rOuter + rInner) / 2, (start + end) / 2);
+    const label = document.createElementNS(ns, "text");
+    label.setAttribute("x", lx); label.setAttribute("y", ly);
+    label.setAttribute("text-anchor", "middle");
+    label.setAttribute("dominant-baseline", "middle");
+    label.classList.add("wedge-label");
+    label.textContent = d.rn;
+    svg.appendChild(label);
+  });
+
+  const centerLink = document.createElementNS(ns, "a");
+  centerLink.setAttributeNS("http://www.w3.org/1999/xlink", "href", "septem-corona.html");
+  centerLink.setAttribute("href", "septem-corona.html");
+  centerLink.classList.add("center-link");
+  centerLink.setAttribute("role", "link");
+  centerLink.setAttribute("aria-label", "七枢冠《セプテム・コロナ》のページへ");
+  centerLink.addEventListener("mouseenter", () => {
+    caption.innerHTML = `<span class="code">SEPTEM CORONA</span><span class="hint">七枢冠について詳しく見る</span>`;
+  });
+  centerLink.addEventListener("mouseleave", () => {
+    caption.innerHTML = `<span class="code">SEPTEM CORONA</span><span class="hint">紋章の区画にカーソルを合わせてください</span>`;
+  });
+
+  const center = document.createElementNS(ns, "circle");
+  center.setAttribute("cx", cx); center.setAttribute("cy", cy); center.setAttribute("r", rInner - 4);
+  center.setAttribute("fill", "#eae2ce"); center.setAttribute("stroke", "#a5843c"); center.setAttribute("stroke-width", "1");
+  centerLink.appendChild(center);
+  const crossV = document.createElementNS(ns, "path");
+  crossV.setAttribute("d", `M ${cx} ${cy-16} L ${cx} ${cy+16} M ${cx-16} ${cy-9} L ${cx+16} ${cy+9} M ${cx-16} ${cy+9} L ${cx+16} ${cy-9}`);
+  crossV.setAttribute("stroke", "#7c2c22"); crossV.setAttribute("stroke-width", "1");
+  centerLink.appendChild(crossV);
+  svg.appendChild(centerLink);
+})();
+</script>
+
+</body>
+</html>
